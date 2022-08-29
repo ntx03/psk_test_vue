@@ -2,7 +2,9 @@
 import { defineProps } from "vue";
 import FloorVue from "./Floor.vue";
 const props = defineProps({
-    house: Object
+    house: Object,
+    popup: Object,
+    floatRef: Object
 });
 
 </script>
@@ -11,7 +13,7 @@ const props = defineProps({
     <div className='house'>
         <div className='house__container'>
             <div class='house__wrapper' v-for="(floors, index) in props.house.floors ">
-                <FloorVue v-bind:floors="floors" :key="index" />
+                <FloorVue v-bind:floors="floors" :key="index" :popup="popup" :floatRef="floatRef" />
             </div>
         </div>
         <h3 className='house__title'>{{ props.house.title }}</h3>

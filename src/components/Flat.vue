@@ -8,6 +8,13 @@ export default {
         flat: {
             type: Object,
             required: true
+        },
+        popup: {
+            type: Object,
+            required: true
+        },
+        floatRef: {
+            type: Object,
         }
     },
     setup(props) {
@@ -30,9 +37,14 @@ export default {
             } else return 'flat';
         };
 
+        const openPopup = () => {
+            props.popup.value = true;
+            props.floatRef.value = dataFlat;
+        }
+
         return () => {
             return (
-                <div className={flatStatus()}>
+                <div className={flatStatus()} onClick={openPopup}>
                     <p className='flat__type'>{dataFlat.plan_type}</p>
                     <div className={marker.value ? 'flat__marker' : 'flat__marker_none'}></div>
                 </div>

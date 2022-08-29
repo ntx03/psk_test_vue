@@ -4,6 +4,8 @@ import Flat from "./Flat.vue";
 
 const props = defineProps({
     floors: Object,
+    popup: Object,
+    floatRef: Object
 });
 
 //console.log(title);
@@ -12,7 +14,7 @@ const props = defineProps({
     <div className='floor'>
         <p className='floor__number'>{{ props.floors.floor }}</p>
         <div className='floor__container' v-for="(flat, index) in props.floors.flats ">
-            <Flat v-bind:flat="flat" :key="index" />
+            <Flat v-bind:flat="flat" :key="index" :popup="popup" :floatRef="floatRef" />
         </div>
     </div>
 </template>

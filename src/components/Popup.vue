@@ -4,34 +4,32 @@ export default {
     name: 'Popup',
     props: {
         popup: {
-            type: Boolean,
-            required: true
+            type: Object,
+
         },
         float: {
             type: Object,
-            required: true
         },
     },
     setup(props) {
-
         const translateBoolian = (data) => data ? "Да" : "Нет";
 
         return () => {
             return (
-                <div className={popup ? 'popup' : 'popup_none'}>
+                <div className={props.popup.value ? 'popup' : 'popup_none'}>
                     <h2 className='popup__title'>Сведения о квартире</h2>
-                    <PopupString name={'Цена в рублях:'} data={`${props.float.cost} рублей`} />
-                    <PopupString name={'Номер этажа:'} data={`${props.float.floor} этаж`} />
-                    <PopupString name={'Номер квартиры:'} data={props.float.number} />
-                    <PopupString name={'Тип объекта(квартира, нежилое, паркинг):'} data={props.float.type} />
-                    <PopupString name={'Тип планировка:'} data={props.float.plan_type} />
-                    <PopupString name={'Площадь:'} data={`${props.float.square} кв.м`} />
-                    <PopupString name={'Текущий статус (Выданы ключи, бронь, свободна):'} data={props.float.status} />
-                    <PopupString name={'Субсидированная:'} data={translateBoolian(props.float.subsidy)} />
-                    <PopupString name={'Маржинальная:'} data={translateBoolian(props.float.marginal)} />
-                    <PopupString name={'С ремонтом:'} data={translateBoolian(props.float.renovation)} />
-                    <PopupString name={'С рассрочкой:'} data={translateBoolian(props.float.installment)} />
-                    <button className='popup__button' onClick={() => setPopup(false)}>Закрыть</button>
+                    <PopupString name={'Цена в рублях:'} data={`${props.float.value.cost} рублей`} />
+                    <PopupString name={'Номер этажа:'} data={`${props.float.value.floor} этаж`} />
+                    <PopupString name={'Номер квартиры:'} data={props.float.value.number} />
+                    <PopupString name={'Тип объекта(квартира, нежилое, паркинг):'} data={props.float.value.type} />
+                    <PopupString name={'Тип планировка:'} data={props.float.value.plan_type} />
+                    <PopupString name={'Площадь:'} data={`${props.float.value.square} кв.м`} />
+                    <PopupString name={'Текущий статус (Выданы ключи, бронь, свободна):'} data={props.float.value.status} />
+                    <PopupString name={'Субсидированная:'} data={translateBoolian(props.float.value.subsidy)} />
+                    <PopupString name={'Маржинальная:'} data={translateBoolian(props.float.value.marginal)} />
+                    <PopupString name={'С ремонтом:'} data={translateBoolian(props.float.value.renovation)} />
+                    <PopupString name={'С рассрочкой:'} data={translateBoolian(props.float.value.installment)} />
+                    <button className='popup__button' onClick={() => props.popup.value = false} >Закрыть</button>
                 </div>
             )
         }

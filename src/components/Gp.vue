@@ -6,7 +6,9 @@ import { defineProps, ref } from "vue";
 
 const props = defineProps({
     id: String,
-    index: Number
+    index: Number,
+    popup: Object,
+    floatRef: Object
 });
 
 let houses = data.entrances.filter((i) => { return i.house_id === props.id }).sort();
@@ -16,8 +18,8 @@ let houses = data.entrances.filter((i) => { return i.house_id === props.id }).so
 <template>
     <div class="gp">
         <div class='gp__container'>
-            <div class="gp__wrapper" v-for="(house, index) in houses ">
-                <HouseVue v-bind:house="house" :key="index" />
+            <div class="gp__wrapper" v-for="(house, index) in houses">
+                <HouseVue v-bind:house="house" :key="index" :popup="popup" :floatRef="floatRef" />
             </div>
         </div>
         <h2 class="gp__title">ГП-{{ index + 1 }}</h2>

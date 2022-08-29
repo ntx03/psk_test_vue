@@ -2,19 +2,22 @@
 import Gp from './components/Gp.vue';
 import data from '@/utils/data.json';
 import PopupVue from './components/Popup.vue';
-
+import { ref } from 'vue';
 // сортируем дома от по порядку от 1 до 5
 const gp = data.houses.sort();
 
 export default {
 
   render() {
+    const popup = ref(false);
+    const floatRef = ref({});
+
     return (
       <div class="app">
         {gp.map((i, index) => {
-          return <Gp id={i} index={index} />
+          return <Gp id={i} index={index} popup={popup} floatRef={floatRef} />
         })}
-
+        <PopupVue popup={popup} float={floatRef} />
       </div>
     )
   }
